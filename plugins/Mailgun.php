@@ -159,12 +159,19 @@ class Mailgun extends phplistPlugin implements EmailSender
         foreach ($phpmailer->getCustomHeaders() as $item) {
             $parameters['h:' . $item[0]] = $item[1];
         }
-        $result = $client->sendMessage($domain, $parameters, $files);
+
+        try {
+            $result = $client->sendMessage($domain, $parameters, $files);
+        } catch (Exception $e) {
+            logEvent(sprintf('Mailgun send exception: %s', $e->getMessage()));
+
+            return false;
+        }
 
         if ($result->http_response_code == 200 && $result->http_response_body->message == 'Queued. Thank you.') {
             return true;
         }
-        logEvent('send failed: ' . print_r($result, true));
+        logEvent('Mailgun send failed: ' . print_r($result, true));
 
         return false;
     }

@@ -1,3 +1,6 @@
+version 1.0.1+20180609
+      Handle an exception when sending and write to the event log
+
 version 1.0.0+20170608
       initial commit
       Use the mailgun library
