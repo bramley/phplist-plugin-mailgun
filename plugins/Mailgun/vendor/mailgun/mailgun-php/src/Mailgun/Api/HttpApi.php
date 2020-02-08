@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Mailgun
+ * Copyright (C) 2013 Mailgun
  *
  * This software may be modified and distributed under the terms
  * of the MIT license. See the LICENSE file for details.
@@ -29,7 +29,7 @@ abstract class HttpApi
      *
      * @var HttpClient
      */
-    private $httpClient;
+    protected $httpClient;
 
     /**
      * @var Hydrator
@@ -69,7 +69,7 @@ abstract class HttpApi
             return $response;
         }
 
-        if ($response->getStatusCode() !== 200 && $response->getStatusCode() !== 201) {
+        if (200 !== $response->getStatusCode() && 201 !== $response->getStatusCode()) {
             $this->handleErrors($response);
         }
 
@@ -95,6 +95,8 @@ abstract class HttpApi
                 throw HttpClientException::requestFailed($response);
             case 404:
                 throw HttpClientException::notFound($response);
+            case 413:
+                throw HttpClientException::payloadTooLarge($response);
             case 500 <= $statusCode:
                 throw HttpServerException::serverError($statusCode);
             default:

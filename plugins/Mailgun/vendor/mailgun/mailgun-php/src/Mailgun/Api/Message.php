@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Mailgun
+ * Copyright (C) 2013 Mailgun
  *
  * This software may be modified and distributed under the terms
  * of the MIT license. See the LICENSE file for details.
@@ -11,6 +11,7 @@ namespace Mailgun\Api;
 
 use Mailgun\Assert;
 use Mailgun\Exception\InvalidArgumentException;
+use Mailgun\Message\BatchMessage;
 use Mailgun\Model\Message\SendResponse;
 use Mailgun\Model\Message\ShowResponse;
 
@@ -19,6 +20,17 @@ use Mailgun\Model\Message\ShowResponse;
  */
 class Message extends HttpApi
 {
+    /**
+     * @param string $domain
+     * @param bool   $autoSend
+     *
+     * @return BatchMessage
+     */
+    public function getBatchMessage($domain, $autoSend = true)
+    {
+        return new BatchMessage($this, $domain, $autoSend);
+    }
+
     /**
      * @param string $domain
      * @param array  $params
@@ -48,6 +60,7 @@ class Message extends HttpApi
 
         $postDataMultipart = array_merge($this->prepareMultipartParameters($params), $postDataMultipart);
         $response = $this->httpPostRaw(sprintf('/v3/%s/messages', $domain), $postDataMultipart);
+        $this->closeResources($postDataMultipart);
 
         return $this->hydrateResponse($response, SendResponse::class);
     }
@@ -69,7 +82,7 @@ class Message extends HttpApi
         $params['to'] = $recipients;
         $postDataMultipart = $this->prepareMultipartParameters($params);
 
-        if (is_file($message)) {
+        if (strlen($message) < PHP_MAXPATHLEN && is_file($message)) {
             $fileData = ['filePath' => $message];
         } else {
             $fileData = [
@@ -79,6 +92,7 @@ class Message extends HttpApi
         }
         $postDataMultipart[] = $this->prepareFile('message', $fileData);
         $response = $this->httpPostRaw(sprintf('/v3/%s/messages.mime', $domain), $postDataMultipart);
+        $this->closeResources($postDataMultipart);
 
         return $this->hydrateResponse($response, SendResponse::class);
     }
@@ -129,7 +143,7 @@ class Message extends HttpApi
             $path = $filePath['filePath'];
 
             // Remove leading @ symbol
-            if (strpos($path, '@') === 0) {
+            if (0 === strpos($path, '@')) {
                 $path = substr($path, 1);
             }
 
@@ -146,7 +160,7 @@ class Message extends HttpApi
     }
 
     /**
-     * Prepare multipart parameters. Make sure each POST parameter is splitted into an array with 'name' and 'content' keys.
+     * Prepare multipart parameters. Make sure each POST parameter is split into an array with 'name' and 'content' keys.
      *
      * @param array $params
      *
@@ -166,5 +180,19 @@ class Message extends HttpApi
         }
 
         return $postDataMultipart;
+    }
+
+    /**
+     * Close open resources.
+     *
+     * @param array $params
+     */
+    private function closeResources(array $params)
+    {
+        foreach ($params as $param) {
+            if (is_array($param) && array_key_exists('content', $param) && is_resource($param['content'])) {
+                fclose($param['content']);
+            }
+        }
     }
 }

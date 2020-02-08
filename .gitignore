@@ -45,15 +45,28 @@ plugins/Mailgun/vendor/php-http/promise/*
 !plugins/Mailgun/vendor/php-http/promise/LICENSE
 !plugins/Mailgun/vendor/php-http/promise/src/
 
+plugins/Mailgun/vendor/psr/http-factory/*
+!plugins/Mailgun/vendor/psr/http-factory/LICENSE
+!plugins/Mailgun/vendor/psr/http-factory/src/
+
 plugins/Mailgun/vendor/psr/http-message/*
 !plugins/Mailgun/vendor/psr/http-message/LICENSE
 !plugins/Mailgun/vendor/psr/http-message/src/
+
+plugins/Mailgun/vendor/ralouphie/getallheaders/*
+!plugins/Mailgun/vendor/ralouphie/getallheaders/LICENSE
+!plugins/Mailgun/vendor/ralouphie/getallheaders/src/
 
 plugins/Mailgun/vendor/symfony/options-resolver/*
 !plugins/Mailgun/vendor/symfony/options-resolver/LICENSE
 !plugins/Mailgun/vendor/symfony/options-resolver/Options.php
 !plugins/Mailgun/vendor/symfony/options-resolver/OptionsResolver.php
 !plugins/Mailgun/vendor/symfony/options-resolver/Exception/
+
+plugins/Mailgun/vendor/symfony/polyfill-ctype/*
+!plugins/Mailgun/vendor/symfony/polyfill-ctype/bootstrap.php
+!plugins/Mailgun/vendor/symfony/polyfill-ctype/Ctype.php
+!plugins/Mailgun/vendor/symfony/polyfill-ctype/LICENSE
 
 plugins/Mailgun/vendor/webmozart/assert/*
 !plugins/Mailgun/vendor/webmozart/assert/LICENSE
