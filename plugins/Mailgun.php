@@ -56,6 +56,13 @@ class Mailgun extends phplistPlugin implements EmailSender
             'allowempty' => false,
             'category' => 'Mailgun',
         ),
+        'mailgun_base_url' => array(
+            'value' => 'https://api.mailgun.net',
+            'description' => 'Base URL',
+            'type' => 'text',
+            'allowempty' => false,
+            'category' => 'Mailgun',
+        ),
     );
 
     /**
@@ -106,7 +113,7 @@ class Mailgun extends phplistPlugin implements EmailSender
         static $domain;
 
         if ($client === null) {
-            $client = \Mailgun\Mailgun::create(getConfig('mailgun_api_key'));
+            $client = \Mailgun\Mailgun::create(getConfig('mailgun_api_key'), getConfig('mailgun_base_url'));
             $domain = getConfig('mailgun_domain');
         }
         $to = $phpmailer->getToAddresses();

@@ -1,3 +1,8 @@
+version 1.1.0+20200216
+      Update csfixer configuration
+      Update Mailgun library to version 2.8.1
+      Support the EU region by allowing the base URL to be specified
+
 version 1.0.1+20180609
       Handle an exception when sending and write to the event log
 

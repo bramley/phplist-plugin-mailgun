@@ -55,5 +55,6 @@ This plugin is free but if you install and find it useful then a donation to sup
 ## Version history ##
 
     version         Description
+    1.1.0+20200216  Support the EU region by allowing the base URL to be specified
     1.0.1+20180609  Handle an exception when sending
     1.0.0+20170608  Initial release
