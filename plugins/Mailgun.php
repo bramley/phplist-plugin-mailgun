@@ -121,15 +121,13 @@ class Mailgun extends phplistPlugin implements EmailSender
             'from' => "$phpmailer->FromName <$phpmailer->From>",
             'to' => $to[0][0],
             'subject' => $phpmailer->Subject,
+            'inline' => [],
+            'attachment' => [],
         ];
         /*
          * Add any attached files as either attachments or inline.
          * Mailgun requires the cid of inline attachments to match the file name
          */
-        $files = [
-            'attachment' => [],
-            'inline' => [],
-        ];
         $inlineCid = [];
         $inlineName = [];
 
@@ -138,11 +136,11 @@ class Mailgun extends phplistPlugin implements EmailSender
             $fileDetails = ['filename' => $name, 'fileContent' => $content];
 
             if ($disposition == 'inline') {
-                $files['inline'][] = $fileDetails;
+                $parameters['inline'][] = $fileDetails;
                 $inlineCid[] = "cid:$cid";
                 $inlineName[] = "cid:$name";
             } else {
-                $files['attachment'][] = $fileDetails;
+                $parameters['attachment'][] = $fileDetails;
             }
         }
         /*
@@ -168,18 +166,13 @@ class Mailgun extends phplistPlugin implements EmailSender
         }
 
         try {
-            $result = $client->sendMessage($domain, $parameters, $files);
+            $result = $client->messages()->send($domain, $parameters, $files);
         } catch (Exception $e) {
             logEvent(sprintf('Mailgun send exception: %s', $e->getMessage()));
 
             return false;
         }
 
-        if ($result->http_response_code == 200 && $result->http_response_body->message == 'Queued. Thank you.') {
-            return true;
-        }
-        logEvent('Mailgun send failed: ' . print_r($result, true));
-
-        return false;
+        return true;
     }
 }
