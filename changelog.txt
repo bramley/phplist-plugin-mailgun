@@ -1,3 +1,7 @@
+version 1.1.1+20200302
+      Use the correct mailgun method for sending.
+      Correct how files and inline images are attached.
+
 version 1.1.0+20200216
       Update csfixer configuration
       Update Mailgun library to version 2.8.1
