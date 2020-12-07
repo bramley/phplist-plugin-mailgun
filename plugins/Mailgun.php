@@ -44,9 +44,16 @@ class Mailgun extends phplistPlugin implements EmailSender
     public $settings = array(
         'mailgun_api_key' => array(
             'value' => '',
-            'description' => 'API key',
+            'description' => 'Private API key',
             'type' => 'text',
             'allowempty' => false,
+            'category' => 'Mailgun',
+        ),
+        'mailgun_webhook_key' => array(
+            'value' => '',
+            'description' => 'HTTP webhook signing key',
+            'type' => 'text',
+            'allowempty' => true,
             'category' => 'Mailgun',
         ),
         'mailgun_domain' => array(
@@ -64,6 +71,7 @@ class Mailgun extends phplistPlugin implements EmailSender
             'category' => 'Mailgun',
         ),
     );
+    public $remotePages = array('webhook');
 
     /**
      * Constructor.

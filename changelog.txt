@@ -1,3 +1,6 @@
+version 1.2.0+20201207
+      Add webhook to handle bounce notifications from Mailgun.
+
 version 1.1.1+20200302
       Use the correct mailgun method for sending.
       Correct how files and inline images are attached.
