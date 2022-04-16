@@ -55,6 +55,7 @@ This plugin is free but if you install and find it useful then a donation to sup
 ## Version history ##
 
     version         Description
+    1.3.1+20220416  Avoid composer check for php version
     1.3.0+20220330  Update Guzzle package
     1.2.0+20201207  Add webhook to handle bounce notifications from Mailgun
     1.1.1+20200302  Fix problem with trying to send through the EU region

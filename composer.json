@@ -1,5 +1,6 @@
 {
     "config": {
+        "platform-check": false,
         "vendor-dir": "plugins/Mailgun/vendor",
         "prepend-autoloader": false
     },
