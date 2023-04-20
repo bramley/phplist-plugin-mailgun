@@ -1,4 +1,4 @@
-.php_cs.cache
+*.cache
 README.html
 
 plugins/Mailgun/vendor/clue/stream-filter/*
@@ -44,6 +44,10 @@ plugins/Mailgun/vendor/php-http/multipart-stream-builder/*
 plugins/Mailgun/vendor/php-http/promise/*
 !plugins/Mailgun/vendor/php-http/promise/LICENSE
 !plugins/Mailgun/vendor/php-http/promise/src/
+
+plugins/Mailgun/vendor/psr/http-client/*
+!plugins/Mailgun/vendor/psr/http-client/LICENSE
+!plugins/Mailgun/vendor/psr/http-client/src/
 
 plugins/Mailgun/vendor/psr/http-factory/*
 !plugins/Mailgun/vendor/psr/http-factory/LICENSE
