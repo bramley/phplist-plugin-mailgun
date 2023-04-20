@@ -2,12 +2,15 @@
     "config": {
         "platform-check": false,
         "vendor-dir": "plugins/Mailgun/vendor",
-        "prepend-autoloader": false
+        "prepend-autoloader": false,
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
     },
     "require": {
-        "mailgun/mailgun-php": "^2.8",
-        "php-http/curl-client": "^1.7",
-        "guzzlehttp/psr7": "^1.8",
+        "mailgun/mailgun-php": "^3",
+        "php-http/curl-client": "^2.2.0",
+        "guzzlehttp/psr7": "^1.9.1",
         "php-http/message": "^1.8"
     }
 }
