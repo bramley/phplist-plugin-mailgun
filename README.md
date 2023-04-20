@@ -2,15 +2,16 @@
 
 ## Description ##
 
-This plugin sends emails through Mailgun using their API.
+This plugin sends emails through Mailgun using its API.
 
 ## Installation ##
 
 ### Dependencies ###
 
-This plugin is for phplist 3.3.0 or later and requires php version 5.4 or later.
+This plugin is for phplist 3.3.0 or later and requires php version 7.3 or later.
 
-It requires the Common Plugin to be installed. You must install, or upgrade to, the latest version. See <https://github.com/bramley/phplist-plugin-common>
+It requires the Common Plugin to be enabled. phplist now includes Common Plugin so you should only need to enable it on
+the Manage Plugins page.
 
 It also requires the php curl extension to be installed.
 

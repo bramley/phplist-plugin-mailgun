@@ -95,7 +95,7 @@ class Mailgun extends phplistPlugin implements EmailSender
         global $emailsenderplugin;
 
         return array(
-            'PHP version 5.4.0 or greater' => version_compare(PHP_VERSION, '5.4') > 0,
+            'PHP version 7.3 or greater' => version_compare(PHP_VERSION, '7.3') > 0,
             'phpList version 3.3.0 or greater' => version_compare(getConfig('version'), '3.3') > 0,
             'No other plugin to send emails can be enabled' => (
                 empty($emailsenderplugin)
