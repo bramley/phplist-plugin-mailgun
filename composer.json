@@ -10,7 +10,7 @@
     "require": {
         "mailgun/mailgun-php": "^3",
         "php-http/curl-client": "^2.2.0",
-        "guzzlehttp/psr7": "^1.9.1",
+        "guzzlehttp/psr7": "^2.6.1",
         "php-http/message": "^1.8"
     }
 }
