@@ -22,6 +22,9 @@ return $config->setRules([
         'blank_line_after_namespace' => true,
         'no_multiline_whitespace_around_double_arrow' => false,
         'visibility_required' =>  ['elements' => ['property', 'method']],
+        'global_namespace_import' => false,
+        'fully_qualified_strict_types' => false,
+        'blank_line_after_opening_tag' => false,
     ])
     ->setFinder($finder)
 ;
