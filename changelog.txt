@@ -1,3 +1,7 @@
+version 1.6.0+20260611
+      CS Fixer
+      Upgrade guzzlehttp/psr7package. Fixes #5
+
 version 1.5.0+20231022
       Update guzzlehttp/psr7 package
 

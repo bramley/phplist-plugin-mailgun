@@ -56,6 +56,7 @@ This plugin is free but if you install and find it useful then a donation to sup
 ## Version history ##
 
     version         Description
+    1.6.0+20260611  Update guzzlehttp/psr7 package
     1.5.0+20231022  Update guzzlehttp/psr7 package
     1.4.0+20230420  Update packages
     1.3.1+20220416  Avoid composer check for php version
